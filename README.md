@@ -5,13 +5,14 @@ alliances and their Force-related information.
 
 ## Features
 
-- Lists six seeded Star Wars groups.
+- Lists eight seeded Star Wars groups.
 - Shows each group's creed, Force affinity, friendliness, and Holocron count.
 - Provides a details page for each group.
 - Keeps Holocron counts at zero until the application can load a real Holocron list.
 
 The current seeded groups are the Jedi Order, Sith Order, Rebel Alliance,
-Galactic Empire, Mandalorian Clans, and Wookiee Clans.
+Galactic Empire, Mandalorian Clans, Wookiee Clans, Imperial Knights, and
+Jeaii Order.
 
 ## Project Structure
 

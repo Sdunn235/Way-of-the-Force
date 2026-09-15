@@ -14,6 +14,5 @@ public static class CreedsData
         new Creeds { Id = 6, CreedName = "Wookiee Clans",     Creed = "Loyalty, courage, and defense of Kashyyyk",              Affinity = 30, TotalHolocrons = 0, IsFriendly = true  },
         new Creeds { Id = 7, CreedName = "Imperial Knights", Creed = "The Force is a powerful tool, but always loyalty to the Emperor. ", Affinity = -25, TotalHolocrons = 0, IsFriendly = false },
         new Creeds { Id = 8, CreedName = "Jeaii Order",     Creed = "There is no light without dark. Through passion, we gain strength.", Affinity = 5, TotalHolocrons = 0, IsFriendly = true  },
-        ne
     };
 }
