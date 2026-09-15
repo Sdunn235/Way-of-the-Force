@@ -1,0 +1,13 @@
+@model global::Creeds.Web.Models.Creeds
+
+@{
+    ViewData["Title"] = "Details Page";
+}
+
+<h1>Creed Details</h1>
+
+<p>Alliance Name: @Model.CreedName</p>
+<p>Creed: @Model.Creed</p>
+<p>Force Affinity: @Model.Affinity</p>
+<p>Total Holocrons: @Model.TotalHolocrons</p>
+<p>Friendly: @Model.IsFriendly</p>

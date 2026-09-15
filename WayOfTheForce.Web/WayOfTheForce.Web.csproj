@@ -4,6 +4,8 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>WayOfTheForce.Web</AssemblyName>
+    <RootNamespace>WayOfTheForce.Web</RootNamespace>
   </PropertyGroup>
 
 </Project>

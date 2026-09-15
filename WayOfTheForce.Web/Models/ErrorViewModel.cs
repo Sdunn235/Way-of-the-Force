@@ -1,4 +1,4 @@
-namespace Cryptids.Web.Models;
+namespace Creeds.Web.Models;
 
 public class ErrorViewModel
 {

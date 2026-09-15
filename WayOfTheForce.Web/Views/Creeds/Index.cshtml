@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Way of the Force Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Star Wars Alliance Creed Database</h1>
+
+    @model List<global::Creeds.Web.Models.Creeds>
+
+    <p>@Model.Count Aliiances in the Star Wars Galaxy database.</p>
+
+    <ul>
+        @foreach (var creed in Model)
+        {
+            <li>@creed.CreedName — @creed.Creed</li><a href="/Creeds/Details/@creed.Id">View Details</a>
+        }
+    </ul>
+</div>
+
+<script src="https://jgrissom.github.io/dotnet-web-dev/week-04/homework-checks.js"></script>

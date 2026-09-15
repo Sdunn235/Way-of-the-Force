@@ -24,5 +24,5 @@ app.MapControllerRoute(
 
 app.Run();
 
-// Makes the app visible to the Cryptids.Checks test project — do not remove.
+// Makes the app visible to the project checks — do not remove.
 public partial class Program { }
