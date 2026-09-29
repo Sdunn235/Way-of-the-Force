@@ -28,8 +28,7 @@ public class CreedsController : Controller
     }
 
     // POST /Creeds/Create — the filled-in form lands here.
-    // It prints what arrived to the terminal and gets out of the way. Temporary,
-    // and the printing is the point.
+    // Invalid → the form comes back with errors. Valid → saved, then back to the list.
     [HttpPost]
     public IActionResult Create(global::Creeds.Web.Models.Creeds newCreed)
     {
@@ -40,13 +39,11 @@ public class CreedsController : Controller
             return View(newCreed);
         }
 
-        Console.WriteLine($"── model binding built a {newCreed.GetType().Name} ──");
-        Console.WriteLine($"   Name        {newCreed.CreedName}");
-        Console.WriteLine($"   Creed       {newCreed.Creed}");
-        Console.WriteLine($"   Affinity    {newCreed.Affinity}   (x2 = {newCreed.Affinity * 2})");
-        Console.WriteLine($"   Holocrons   {newCreed.TotalHolocrons}");
-        Console.WriteLine($"   Friendly    {newCreed.IsFriendly}");
+        // Happy path: give it the next id, add it to the list, and redirect
+        // so a browser refresh doesn't submit the same alliance again.
+        newCreed.Id = CreedsData.All.Max(c => c.Id) + 1;
+        CreedsData.All.Add(newCreed);
 
-        return Content("Submitted — look at the terminal 👀");
+        return RedirectToAction(nameof(Index));
     }
 }
