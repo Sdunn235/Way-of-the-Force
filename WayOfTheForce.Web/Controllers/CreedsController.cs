@@ -31,14 +31,14 @@ public class CreedsController : Controller
     // It prints what arrived to the terminal and gets out of the way. Temporary,
     // and the printing is the point.
     [HttpPost]
-    public IActionResult Create(global::Creeds.Web.Models.Creeds creed)
+    public IActionResult Create(global::Creeds.Web.Models.Creeds newCreed)
     {
-        Console.WriteLine($"── model binding built a {creed.GetType().Name} ──");
-        Console.WriteLine($"   Name        {creed.CreedName}");
-        Console.WriteLine($"   Creed       {creed.Creed}");
-        Console.WriteLine($"   Affinity    {creed.Affinity}   (x2 = {creed.Affinity * 2})");
-        Console.WriteLine($"   Holocrons   {creed.TotalHolocrons}");
-        Console.WriteLine($"   Friendly    {creed.IsFriendly}");
+        Console.WriteLine($"── model binding built a {newCreed.GetType().Name} ──");
+        Console.WriteLine($"   Name        {newCreed.CreedName}");
+        Console.WriteLine($"   Creed       {newCreed.Creed}");
+        Console.WriteLine($"   Affinity    {newCreed.Affinity}   (x2 = {newCreed.Affinity * 2})");
+        Console.WriteLine($"   Holocrons   {newCreed.TotalHolocrons}");
+        Console.WriteLine($"   Friendly    {newCreed.IsFriendly}");
 
         return Content("Submitted — look at the terminal 👀");
     }
