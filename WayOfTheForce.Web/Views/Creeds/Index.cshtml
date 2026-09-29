@@ -1,18 +1,16 @@
-﻿@{
+@model List<global::Creeds.Web.Models.Creeds>
+
+@{
     ViewData["Title"] = "Way of the Force Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Star Wars Alliance Creed Database</h1>
-
-    @model List<global::Creeds.Web.Models.Creeds>
-
-    <p>@Model.Count Aliiances in the Star Wars Galaxy database.</p>
-
-    <ul>
-        @foreach (var creed in Model)
-        {
-            <li>@creed.CreedName — @creed.Creed</li><a href="/Creeds/Details/@creed.Id">View Details</a>
-        }
-    </ul>
+    <p>@Model.Count Alliances in the Star Wars Galaxy database.</p>
 </div>
+
+@foreach (var creed in Model)
+{
+    <partial name="_CreedCard" model="creed" />
+    <a asp-action="Details" asp-route-id="@creed.Id" class="d-block mb-4">View Details</a>
+}
