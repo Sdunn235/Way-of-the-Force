@@ -1,14 +1,46 @@
+@model global::Creeds.Web.Models.Creeds
+
 @{
     ViewData["Title"] = "Add an alliance";
 }
 
 <h1>Add an alliance</h1>
 
-<form method="post">
-    <label>Name <input name="CreedName" /></label>
-    <label>Creed <input name="Creed" /></label>
-    <label>Force Affinity <input name="Affinity" /></label>
-    <label>Total Holocrons <input name="TotalHolocrons" /></label>
-    <label>Friendly <input type="checkbox" name="IsFriendly" value="true" /></label>
-    <button type="submit">Add it</button>
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="CreedName" class="form-label"></label>
+        <input asp-for="CreedName" class="form-control" />
+        <span asp-validation-for="CreedName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Creed" class="form-label"></label>
+        <input asp-for="Creed" class="form-control" />
+        <span asp-validation-for="Creed" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Affinity" class="form-label"></label>
+        <input asp-for="Affinity" class="form-control" />
+        <span asp-validation-for="Affinity" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TotalHolocrons" class="form-label"></label>
+        <input asp-for="TotalHolocrons" class="form-control" />
+        <span asp-validation-for="TotalHolocrons" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="IsFriendly" class="form-check-input" />
+        <label asp-for="IsFriendly" class="form-check-label"></label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add it</button>
 </form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

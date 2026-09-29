@@ -33,6 +33,13 @@ public class CreedsController : Controller
     [HttpPost]
     public IActionResult Create(global::Creeds.Web.Models.Creeds newCreed)
     {
+        // Annotations failed (bad or missing input) — hand the same form back
+        // with the user's values so the error messages can show.
+        if (!ModelState.IsValid)
+        {
+            return View(newCreed);
+        }
+
         Console.WriteLine($"── model binding built a {newCreed.GetType().Name} ──");
         Console.WriteLine($"   Name        {newCreed.CreedName}");
         Console.WriteLine($"   Creed       {newCreed.Creed}");
