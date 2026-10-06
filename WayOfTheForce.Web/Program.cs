@@ -1,4 +1,4 @@
-using Creeds.Web.Data;
+using WayOfTheForce.Web.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

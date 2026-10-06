@@ -1,4 +1,4 @@
-namespace Creeds.Web.Models;
+namespace WayOfTheForce.Web.Models;
 
 // Star Wars alliance data, hard-coded for now. In week 7 this becomes a
 // database table and this file goes away — the controller barely changes.

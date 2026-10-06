@@ -1,4 +1,4 @@
-namespace Creeds.Web.Models;
+namespace WayOfTheForce.Web.Models;
 
 public class ErrorViewModel
 {

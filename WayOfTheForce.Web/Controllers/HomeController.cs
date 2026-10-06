@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Creeds.Web.Models;
+using WayOfTheForce.Web.Models;
 
-namespace Creeds.Web.Controllers;
+namespace WayOfTheForce.Web.Controllers;
 
 public class HomeController : Controller
 {

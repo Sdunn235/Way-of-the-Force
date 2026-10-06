@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Creeds.Web.Models;
+using WayOfTheForce.Web.Models;
 
-namespace Creeds.Web.Controllers;
+namespace WayOfTheForce.Web.Controllers;
 
 public class CreedsController : Controller
 {
@@ -30,7 +30,7 @@ public class CreedsController : Controller
     // POST /Creeds/Create — the filled-in form lands here.
     // Invalid → the form comes back with errors. Valid → saved, then back to the list.
     [HttpPost]
-    public IActionResult Create(global::Creeds.Web.Models.Creeds newCreed)
+    public IActionResult Create(Creeds newCreed)
     {
         // Annotations failed (bad or missing input) — hand the same form back
         // with the user's values so the error messages can show.

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Creeds.Web.Models;
+namespace WayOfTheForce.Web.Models;
 
 public class Creeds
 {
