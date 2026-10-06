@@ -1,18 +1,24 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using WayOfTheForce.Web.Data;
 using WayOfTheForce.Web.Models;
 
 namespace WayOfTheForce.Web.Controllers;
 
 public class CreedsController : Controller
-{
+{   
+    private readonly WayOfTheForceContext _context;
+    public CreedsController(WayOfTheForceContext context)
+    {
+        _context = context;
+    }
     public IActionResult Index()
     {
-        return View(CreedsData.All);
+        return View(_context.Creeds.ToList());
     }
     public IActionResult Details(int id)
     {
-        var creed = CreedsData.All.FirstOrDefault(c => c.Id == id);
+        var creed = _context.Creeds.FirstOrDefault(c => c.Id == id);
 
         if (creed == null)
         {
@@ -30,6 +36,7 @@ public class CreedsController : Controller
     // POST /Creeds/Create — the filled-in form lands here.
     // Invalid → the form comes back with errors. Valid → saved, then back to the list.
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult Create(Creeds newCreed)
     {
         // Annotations failed (bad or missing input) — hand the same form back
@@ -39,10 +46,8 @@ public class CreedsController : Controller
             return View(newCreed);
         }
 
-        // Happy path: give it the next id, add it to the list, and redirect
-        // so a browser refresh doesn't submit the same alliance again.
-        newCreed.Id = CreedsData.All.Max(c => c.Id) + 1;
-        CreedsData.All.Add(newCreed);
+        _context.Creeds.Add(newCreed);
+        _context.SaveChanges();
 
         return RedirectToAction(nameof(Index));
     }
