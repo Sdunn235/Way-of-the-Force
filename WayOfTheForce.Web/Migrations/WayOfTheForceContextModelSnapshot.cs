@@ -42,6 +42,10 @@ namespace WayOfTheForce.Web.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Homeworld")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<bool>("IsFriendly")
                         .HasColumnType("bit");
 
@@ -50,7 +54,7 @@ namespace WayOfTheForce.Web.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Creeds", (string)null);
+                    b.ToTable("Creeds");
 
                     b.HasData(
                         new
@@ -59,6 +63,7 @@ namespace WayOfTheForce.Web.Migrations
                             Affinity = 95,
                             Creed = "Peacekeepers who serve the light side of the Force",
                             CreedName = "Jedi Order",
+                            Homeworld = "Coruscant",
                             IsFriendly = true,
                             TotalHolocrons = 0
                         },
@@ -68,6 +73,7 @@ namespace WayOfTheForce.Web.Migrations
                             Affinity = -95,
                             Creed = "Power through passion and mastery of the dark side",
                             CreedName = "Sith Order",
+                            Homeworld = "Moraband",
                             IsFriendly = false,
                             TotalHolocrons = 0
                         },
@@ -77,6 +83,7 @@ namespace WayOfTheForce.Web.Migrations
                             Affinity = 70,
                             Creed = "Freedom and hope against Imperial tyranny",
                             CreedName = "Rebel Alliance",
+                            Homeworld = "Yavin 4",
                             IsFriendly = true,
                             TotalHolocrons = 0
                         },
@@ -86,6 +93,7 @@ namespace WayOfTheForce.Web.Migrations
                             Affinity = -85,
                             Creed = "Order and control through Imperial rule",
                             CreedName = "Galactic Empire",
+                            Homeworld = "Coruscant",
                             IsFriendly = false,
                             TotalHolocrons = 0
                         },
@@ -95,6 +103,7 @@ namespace WayOfTheForce.Web.Migrations
                             Affinity = -55,
                             Creed = "Honor, loyalty, and strength through the warrior creed",
                             CreedName = "Mandalorian Clans",
+                            Homeworld = "Mandalore",
                             IsFriendly = false,
                             TotalHolocrons = 0
                         },
@@ -104,6 +113,7 @@ namespace WayOfTheForce.Web.Migrations
                             Affinity = 30,
                             Creed = "Loyalty, courage, and defense of Kashyyyk",
                             CreedName = "Wookiee Clans",
+                            Homeworld = "Kashyyyk",
                             IsFriendly = true,
                             TotalHolocrons = 0
                         },
@@ -113,6 +123,7 @@ namespace WayOfTheForce.Web.Migrations
                             Affinity = -25,
                             Creed = "The Force is a powerful tool, but always loyalty to the Emperor.",
                             CreedName = "Imperial Knights",
+                            Homeworld = "Bastion",
                             IsFriendly = false,
                             TotalHolocrons = 0
                         },
@@ -122,6 +133,7 @@ namespace WayOfTheForce.Web.Migrations
                             Affinity = 5,
                             Creed = "There is no light without dark. Through passion, we gain strength.",
                             CreedName = "Jeaii Order",
+                            Homeworld = "Tython",
                             IsFriendly = true,
                             TotalHolocrons = 0
                         });

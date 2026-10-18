@@ -4,7 +4,7 @@ namespace WayOfTheForce.Web.Models;
 
 public class Creeds
 {
-    // Not on the form — the controller assigns it. Nothing to validate.
+    // The database assigns it. Edit and Delete carry it back in a hidden field.
     public int Id { get; set; }
 
     [Required(ErrorMessage = "Every alliance needs a name.")]
@@ -15,6 +15,10 @@ public class Creeds
     [Required(ErrorMessage = "Every alliance needs a creed.")]
     [StringLength(100)]
     public string Creed { get; set; } = "";
+
+    // Nullable so the migration can add the column to rows that already exist.
+    [StringLength(50)]
+    public string? Homeworld { get; set; }
 
     [Range(-100, 100, ErrorMessage = "Force Affinity runs from {1} (dark) to {2} (light).")]
     [Display(Name = "Force Affinity")]

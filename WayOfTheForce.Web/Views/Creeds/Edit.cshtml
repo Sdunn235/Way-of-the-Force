@@ -23,6 +23,12 @@
     </div>
 
     <div class="mb-3">
+        <label asp-for="Homeworld" class="form-label"></label>
+        <input asp-for="Homeworld" class="form-control" />
+        <span asp-validation-for="Homeworld" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
         <label asp-for="Affinity" class="form-label"></label>
         <input asp-for="Affinity" class="form-control" />
         <span asp-validation-for="Affinity" class="text-danger"></span>

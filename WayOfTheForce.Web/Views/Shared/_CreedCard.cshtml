@@ -5,6 +5,7 @@
         <h5 class="card-title">@Model.CreedName</h5>
         <p class="card-text">@Model.Creed</p>
         <ul class="list-unstyled mb-0">
+            <li>Homeworld: @(Model.Homeworld ?? "Unknown")</li>
             <li>Force Affinity: @Model.Affinity</li>
             <li>Total Holocrons: @Model.TotalHolocrons</li>
             <li>Friendly: @(Model.IsFriendly ? "Yes" : "No")</li>

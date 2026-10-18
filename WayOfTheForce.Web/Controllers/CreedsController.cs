@@ -74,7 +74,7 @@ public class CreedsController : Controller
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("Id,CreedName,Creed,Affinity,TotalHolocrons,IsFriendly")] Creeds creeds)
+    public async Task<IActionResult> Edit(int id, [Bind("Id,CreedName,Creed,Homeworld,Affinity,TotalHolocrons,IsFriendly")] Creeds creeds)
     {
         if (id != creeds.Id)
         {
