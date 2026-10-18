@@ -7,5 +7,7 @@
 <h1>Creed Details</h1>
 
 <partial name="_CreedCard" model="Model" />
+<p class="mt-4"><a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">✏️ Edit this Creed</a></p>
+<p><a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">🗑️ Remove this Creed</a></p>
 
 <a asp-action="Index">Back to all alliances</a>

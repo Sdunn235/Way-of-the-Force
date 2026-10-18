@@ -1,0 +1,48 @@
+@model Creeds
+@{
+    ViewData["Title"] = $"Edit: {Model.CreedName}";
+}
+
+<h1>Edit this Creed ✏️</h1>
+
+<form asp-action="Edit" method="post" class="col-md-6">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label asp-for="CreedName" class="form-label"></label>
+        <input asp-for="CreedName" class="form-control" />
+        <span asp-validation-for="CreedName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Creed" class="form-label"></label>
+        <input asp-for="Creed" class="form-control" />
+        <span asp-validation-for="Creed" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Affinity" class="form-label"></label>
+        <input asp-for="Affinity" class="form-control" />
+        <span asp-validation-for="Affinity" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="TotalHolocrons" class="form-label"></label>
+        <input asp-for="TotalHolocrons" class="form-control" />
+        <span asp-validation-for="TotalHolocrons" class="text-danger"></span>
+    </div>
+
+    <div class="form-check mb-3">
+        <input asp-for="IsFriendly" class="form-check-input" />
+        <label asp-for="IsFriendly" class="form-check-label"></label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save changes</button>
+    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-link">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
