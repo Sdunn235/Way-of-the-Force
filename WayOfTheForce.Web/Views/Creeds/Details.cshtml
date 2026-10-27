@@ -1,4 +1,4 @@
-@model Creeds
+@model CreedDetailsViewModel
 
 @{
     ViewData["Title"] = "Alliance Details Page";
@@ -6,8 +6,50 @@
 
 <h1>Creed Details</h1>
 
-<partial name="_CreedCard" model="Model" />
-<p class="mt-4"><a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-secondary">✏️ Edit this Creed</a></p>
-<p><a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-outline-danger">🗑️ Remove this Creed</a></p>
+<partial name="_CreedCard" model="Model.Creed" />
+
+<h2 class="h5 mt-4">Holocron Archive</h2>
+
+@if (Model.Creed.Holocrons.Count > 0)
+{
+    <ul class="list-group mb-4">
+        @foreach (var holocron in Model.Creed.Holocrons)
+        {
+            <li class="list-group-item d-flex justify-content-between">
+                <span>
+                    @holocron.Title
+                    <span class="text-muted">· @holocron.Author · Found on @(holocron.FoundLocation ?? "unknown")</span>
+                </span>
+                <span>Year @holocron.WhenRecorded</span>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p class="text-muted">No holocrons recovered.</p>
+}
+
+<h2 class="h5 mt-4">Also on @(Model.Creed.Homeworld ?? "this world")</h2>
+
+@if (Model.AlsoHere.Count > 0)
+{
+    <ul class="list-group mb-4">
+        @foreach (var other in Model.AlsoHere)
+        {
+            <li class="list-group-item d-flex justify-content-between">
+                <a asp-action="Details" asp-route-id="@other.Id">@other.CreedName</a>
+                <span class="text-muted small">@other.Holocrons.Count on the archive</span>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p class="text-muted">No other alliances share this homeworld.</p>
+}
+
+<p class="mt-4"><a asp-action="Edit" asp-route-id="@Model.Creed.Id" class="btn btn-secondary">✏️ Edit this Creed</a></p>
+<p><a asp-action="Delete" asp-route-id="@Model.Creed.Id" class="btn btn-outline-danger">🗑️ Remove this Creed</a></p>
 
 <a asp-action="Index">Back to all alliances</a>

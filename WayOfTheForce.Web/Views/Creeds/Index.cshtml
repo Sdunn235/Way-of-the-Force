@@ -1,4 +1,4 @@
-@model List<Creeds>
+﻿@model List<Creeds>
 
 @{
     ViewData["Title"] = "Way of the Force Page";
@@ -14,3 +14,4 @@
     <partial name="_CreedCard" model="creed" />
     <a asp-action="Details" asp-route-id="@creed.Id" class="d-block mb-4">View Details</a>
 }
+

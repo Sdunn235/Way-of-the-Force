@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WayOfTheForce.Web.Data;
 using WayOfTheForce.Web.Models;
+using WayOfTheForce.Web.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace WayOfTheForce.Web.Controllers;
@@ -15,18 +16,36 @@ public class CreedsController : Controller
     }
     public IActionResult Index()
     {
-        return View(_context.Creeds.ToList());
+        // Include loads the Holocrons in one query so each card can show its count.
+        return View(_context.Creeds
+            .Include(c => c.Holocrons)
+            .ToList());
     }
     public IActionResult Details(int id)
     {
-        var creed = _context.Creeds.FirstOrDefault(c => c.Id == id);
+        // Include pulls in the related Holocrons; without it the list is always empty.
+        var creed = _context.Creeds
+            .Include(c => c.Holocrons)
+            .FirstOrDefault(c => c.Id == id);
 
         if (creed == null)
         {
             return NotFound();       // honest 404
         }
 
-        return View(creed);
+        // One object holds everything the page needs, so the view never casts ViewData.
+        var viewModel = new CreedDetailsViewModel
+        {
+            Creed = creed,
+            AlsoHere = creed.Homeworld == null
+                ? new List<Creeds>()     // unknown homeworld, nothing to match
+                : _context.Creeds
+                    .Include(c => c.Holocrons)
+                    .Where(c => c.Homeworld == creed.Homeworld && c.Id != creed.Id)
+                    .ToList()
+        };
+
+        return View(viewModel);
     }
     // GET /Creeds/Create — hand the browser an empty form
     public IActionResult Create()
@@ -112,7 +131,9 @@ public class CreedsController : Controller
             return NotFound();
         }
 
+        // Include so the card shows the real count of Holocrons that will be deleted with this Creed.
         var creeds = await _context.Creeds
+            .Include(c => c.Holocrons)
             .FirstOrDefaultAsync(m => m.Id == id);
         if (creeds == null)
         {

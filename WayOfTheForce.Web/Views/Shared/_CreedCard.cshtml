@@ -11,4 +11,8 @@
             <li>Friendly: @(Model.IsFriendly ? "Yes" : "No")</li>
         </ul>
     </div>
+    <div class="card-footer d-flex justify-content-between">
+        <a href="/Creeds/Details/@Model.Id">Details</a>
+        <span class="text-muted small">@Model.Holocrons.Count on the archive</span>
+    </div>
 </div>

@@ -138,6 +138,57 @@ namespace WayOfTheForce.Web.Migrations
                             TotalHolocrons = 0
                         });
                 });
+
+            modelBuilder.Entity("WayOfTheForce.Web.Models.Holocrons", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("CreedId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FoundLocation")
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
+                    b.Property<int>("WhenRecorded")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreedId");
+
+                    b.ToTable("Holocrons");
+                });
+
+            modelBuilder.Entity("WayOfTheForce.Web.Models.Holocrons", b =>
+                {
+                    b.HasOne("WayOfTheForce.Web.Models.Creeds", "Creed")
+                        .WithMany("Holocrons")
+                        .HasForeignKey("CreedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Creed");
+                });
+
+            modelBuilder.Entity("WayOfTheForce.Web.Models.Creeds", b =>
+                {
+                    b.Navigation("Holocrons");
+                });
 #pragma warning restore 612, 618
         }
     }

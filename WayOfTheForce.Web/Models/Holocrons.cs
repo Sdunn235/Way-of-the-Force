@@ -18,6 +18,11 @@ public class Holocrons
     [Range(0, int.MaxValue, ErrorMessage = "The galactic year must be a positive number.")]
     public int WhenRecorded { get; set; }
 
+    // Nullable so the migration can add the column to rows that already exist.
+    [StringLength(60)]
+    [Display(Name = "Found Location")]
+    public string? FoundLocation { get; set; }
+
     // The foreign key. THIS is the column that exists in the table.
     [Display(Name = "Creed")]
     public int CreedId { get; set; }
