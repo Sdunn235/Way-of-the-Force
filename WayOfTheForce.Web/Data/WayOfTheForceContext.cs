@@ -10,6 +10,7 @@ public class WayOfTheForceContext : DbContext
     }
 
     public DbSet<Creeds> Creeds => Set<Creeds>();
+    public DbSet<Holocrons> Holocrons => Set<Holocrons>();
 
     // Seed data — the alliances that used to live in CreedsData.cs.
     // Same ids as before, so existing /Creeds/Details/{id} links still work.

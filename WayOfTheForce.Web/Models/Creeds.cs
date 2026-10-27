@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
+
 namespace WayOfTheForce.Web.Models;
 
 public class Creeds
@@ -30,4 +31,6 @@ public class Creeds
 
     [Display(Name = "Are They Friendly?")]
     public bool IsFriendly { get; set; }
+
+    public ICollection<Holocrons> Holocrons { get; set; } = new List<Holocrons>();
 }
