@@ -155,6 +155,9 @@ namespace WayOfTheForce.Web.Migrations
                     b.Property<int>("CreedId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Era")
+                        .HasColumnType("int");
+
                     b.Property<string>("FoundLocation")
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");

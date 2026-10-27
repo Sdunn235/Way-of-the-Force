@@ -10,6 +10,14 @@
     <partial name="_CreedCard" model="Model" />
 </div>
 
+@if (Model.Holocrons.Count > 0)
+{
+    <div class="alert alert-warning">
+        This creed has <strong>@Model.Holocrons.Count</strong> holocron@(Model.Holocrons.Count == 1 ? "" : "s") in its archive.
+        Removing the creed destroys @(Model.Holocrons.Count == 1 ? "it" : "them") too.
+    </div>
+}
+
 <form asp-action="Delete" method="post">
     <input type="hidden" asp-for="Id" />
     <button type="submit" class="btn btn-danger">Remove it</button>

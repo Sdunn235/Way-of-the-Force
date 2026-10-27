@@ -1,0 +1,55 @@
+@model HolocronFormViewModel
+@{
+    ViewData["Title"] = "Archive a holocron";
+}
+
+<h1>Archive a holocron 🔷</h1>
+
+<form asp-action="Create" method="post" class="col-md-6">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Holocron.CreedId" class="form-label"></label>
+        <select asp-for="Holocron.CreedId" asp-items="Model.Creeds" class="form-select">
+            <option value="">— pick a creed —</option>
+        </select>
+        <span asp-validation-for="Holocron.CreedId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Holocron.Title" class="form-label"></label>
+        <input asp-for="Holocron.Title" class="form-control" />
+        <span asp-validation-for="Holocron.Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Holocron.Author" class="form-label"></label>
+        <input asp-for="Holocron.Author" class="form-control" />
+        <span asp-validation-for="Holocron.Author" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Holocron.WhenRecorded" class="form-label"></label>
+        <input asp-for="Holocron.WhenRecorded" class="form-control" />
+        <span asp-validation-for="Holocron.WhenRecorded" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Holocron.Era" class="form-label"></label>
+        <select asp-for="Holocron.Era" asp-items="Html.GetEnumSelectList<GalacticEra>()" class="form-select"></select>
+        <span asp-validation-for="Holocron.Era" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Holocron.FoundLocation" class="form-label"></label>
+        <input asp-for="Holocron.FoundLocation" class="form-control" />
+        <span asp-validation-for="Holocron.FoundLocation" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Archive it</button>
+    <a asp-controller="Creeds" asp-action="Index" class="btn btn-link">Cancel</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

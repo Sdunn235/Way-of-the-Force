@@ -10,6 +10,12 @@
 
 <h2 class="h5 mt-4">Holocron Archive</h2>
 
+<p>
+    <a asp-controller="Holocrons" asp-action="Create" asp-route-creedId="@Model.Creed.Id" class="btn btn-primary">
+        ＋ Archive a holocron
+    </a>
+</p>
+
 @if (Model.Creed.Holocrons.Count > 0)
 {
     <ul class="list-group mb-4">
@@ -20,7 +26,7 @@
                     @holocron.Title
                     <span class="text-muted">· @holocron.Author · Found on @(holocron.FoundLocation ?? "unknown")</span>
                 </span>
-                <span>Year @holocron.WhenRecorded</span>
+                <span>Year @holocron.WhenRecorded @holocron.Era</span>
             </li>
         }
     </ul>

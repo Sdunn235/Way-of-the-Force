@@ -18,6 +18,10 @@ public class Holocrons
     [Range(0, int.MaxValue, ErrorMessage = "The galactic year must be a positive number.")]
     public int WhenRecorded { get; set; }
 
+    // Which calendar WhenRecorded is counted in. Stored as an int; existing rows get 0 (BBY).
+    [Display(Name = "Era")]
+    public GalacticEra Era { get; set; }
+
     // Nullable so the migration can add the column to rows that already exist.
     [StringLength(60)]
     [Display(Name = "Found Location")]
