@@ -5,7 +5,20 @@
 <div class="text-center">
     <h1 class="display-4">Choose Your Path</h1>
     <p>Picture yourself on a journey through the mystical world of the Force.</p>
+
+    <h4 class="mt-4">Choose your side</h4>
+    <div class="btn-group" role="group" aria-label="Choose your side">
+        <button type="button" class="btn btn-info" onclick="setSide('light')">Light Side</button>
+        <button type="button" class="btn btn-secondary" onclick="setSide('grey')">Grey Side</button>
+        <button type="button" class="btn btn-danger" onclick="setSide('dark')">Dark Side</button>
+    </div>
+
+    <h4 class="mt-5">Where will you go?</h4>
+    <div class="d-flex justify-content-center gap-3">
+        <a class="btn btn-outline-primary btn-lg" asp-controller="Creeds" asp-action="Index">Explore the Creeds</a>
+        <a class="btn btn-outline-warning btn-lg" asp-controller="Holocrons" asp-action="Index">View the Holocrons</a>
+    </div>
 </div>
 @section Scripts {
-    <script src="https://jgrissom.github.io/dotnet-web-dev/week-09/homework-checks.js"></script>
+    <script src="https://jgrissom.github.io/dotnet-web-dev/week-10/homework-checks.js"></script>
 }

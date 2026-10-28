@@ -14,6 +14,10 @@
             <option value="">— pick a creed —</option>
         </select>
         <span asp-validation-for="Holocron.CreedId" class="text-danger"></span>
+        @if (Model.Creeds == null || !Model.Creeds.Any())
+        {
+            <div class="form-text">No creeds to choose from yet. <a asp-controller="Creeds" asp-action="Create">Add an alliance</a> first.</div>
+        }
     </div>
 
     <div class="mb-3">

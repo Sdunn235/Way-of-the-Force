@@ -16,6 +16,17 @@ public class HolocronsController : Controller
         _context = context;
     }
 
+    // GET /Holocrons — every holocron in the archive, with the creed it belongs to.
+    public async Task<IActionResult> Index()
+    {
+        var holocrons = await _context.Holocrons
+            .Include(h => h.Creed)
+            .OrderBy(h => h.Title)
+            .ToListAsync();
+
+        return View(holocrons);
+    }
+
     // GET /Holocrons/Create?creedId=3 — the link from a creed's page passes the id,
     // so the dropdown can come up already on the right creed.
     public IActionResult Create(int? creedId)

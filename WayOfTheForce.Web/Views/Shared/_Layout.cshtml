@@ -6,7 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Way of the Force</title>
     <script type="importmap"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/solar/bootstrap.min.css" asp-append-version="true"/>
+    <link id="theme-css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/solar/bootstrap.min.css" />
+    <script>
+        // Each side of the Force maps to a Bootswatch theme
+        const sideThemes = { light: "cerulean", grey: "slate", dark: "cyborg" };
+
+        function setSide(side) {
+            document.getElementById("theme-css").href =
+                `https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/${sideThemes[side]}/bootstrap.min.css`;
+            localStorage.setItem("side", side);
+        }
+
+        // Re-apply the saved side on every page before it paints
+        const savedSide = localStorage.getItem("side");
+        if (sideThemes[savedSide]) setSide(savedSide);
+    </script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/WayOfTheForce.Web.styles.css" asp-append-version="true" />
 </head>
@@ -27,15 +41,15 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Creeds"
-                               asp-action="Index">Creeds</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
-                               asp-action="Privacy">Privacy</a>
+                            asp-action="Index">Creeds</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Creeds"
-                               asp-action="Create">Add Alliance</a>
+                            asp-action="Create">Add Alliance</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Holocrons"
+                            asp-action="Index">Holocrons</a>
                         </li>
                     </ul>
                 </div>
@@ -49,8 +63,8 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - Way of the Force - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="container text-center">
+            &copy; 2026 - Way of the Force 
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
