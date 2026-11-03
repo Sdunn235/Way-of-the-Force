@@ -24,6 +24,10 @@ Development at WCTC.
 
 ASP.NET Core MVC (.NET 10), Entity Framework Core, SQL Server, Bootstrap, and Bootswatch themes.
 
+The seeded holocrons come from [Wookieepedia](https://starwars.fandom.com/wiki/Category:Holocrons),
+each matched to the creed that made or held it. Where Wookieepedia gives no year
+it was made, the earliest year it does give is used.
+
 ## Running it locally
 
 You need the .NET 10 SDK, the `dotnet-ef` tool, and a SQL Server database. The
