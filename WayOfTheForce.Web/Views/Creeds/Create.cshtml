@@ -1,10 +1,10 @@
 @model Creeds
 
 @{
-    ViewData["Title"] = "Add an alliance";
+    ViewData["Title"] = "Add a creed";
 }
 
-<h1>Add an alliance</h1>
+<h1>Add a creed</h1>
 
 <form asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -31,12 +31,6 @@
         <label asp-for="Affinity" class="form-label"></label>
         <input asp-for="Affinity" class="form-control" />
         <span asp-validation-for="Affinity" class="text-danger"></span>
-    </div>
-
-    <div class="mb-3">
-        <label asp-for="TotalHolocrons" class="form-label"></label>
-        <input asp-for="TotalHolocrons" class="form-control" />
-        <span asp-validation-for="TotalHolocrons" class="text-danger"></span>
     </div>
 
     <div class="form-check mb-3">

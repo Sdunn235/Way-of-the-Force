@@ -8,13 +8,14 @@ public class Creeds
     // The database assigns it. Edit and Delete carry it back in a hidden field.
     public int Id { get; set; }
 
-    [Required(ErrorMessage = "Every alliance needs a name.")]
+    [Required(ErrorMessage = "Every creed needs a name.")]
     [StringLength(50, MinimumLength = 2)]
-    [Display(Name = "Alliance Name")]
+    [Display(Name = "Creed Name")]
     public string CreedName { get; set; } = "";
 
-    [Required(ErrorMessage = "Every alliance needs a creed.")]
+    [Required(ErrorMessage = "Every creed needs its beliefs.")]
     [StringLength(100)]
+    [Display(Name = "Beliefs")]
     public string Creed { get; set; } = "";
 
     // Nullable so the migration can add the column to rows that already exist.

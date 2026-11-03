@@ -29,3 +29,16 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/* Bootswatch leaves navbar text black on its dark themes. The body color is readable on all of them. */
+.navbar {
+  --bs-navbar-color: var(--bs-body-color);
+  --bs-navbar-hover-color: var(--bs-link-color);
+  --bs-navbar-active-color: var(--bs-body-color);
+  --bs-navbar-brand-color: var(--bs-body-color);
+  --bs-navbar-brand-hover-color: var(--bs-link-color);
+}
+
+.navbar-toggler {
+  color: var(--bs-body-color);
+}

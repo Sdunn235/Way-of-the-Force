@@ -1,25 +1,27 @@
 ﻿@model List<Creeds>
 
 @{
-    ViewData["Title"] = "Way of the Force Page";
+    ViewData["Title"] = "Creeds of the Galaxy";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Star Wars Alliance Creed Database</h1>
-    <p>@Model.Count Alliances in the Star Wars Galaxy database.</p>
+<div class="text-center mb-4">
+    <h1 class="display-4">Creeds of the Galaxy</h1>
+    <p>@Model.Count creed@(Model.Count == 1 ? "" : "s") in the Star Wars archive.</p>
 </div>
 
 @if (Model.Count > 0)
 {
-    foreach (var creed in Model)
-    {
-        <partial name="_CreedCard" model="creed" />
-        <a asp-action="Details" asp-route-id="@creed.Id" class="d-block mb-4">View Details</a>
-    }
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-4">
+        @foreach (var creed in Model)
+        {
+            <div class="col">
+                <partial name="_CreedCard" model="creed" />
+            </div>
+        }
+    </div>
 }
 else
 {
-    <p class="text-muted text-center">No alliances recorded yet.</p>
-    <p class="text-center"><a asp-action="Create" class="btn btn-primary">＋ Add the first alliance</a></p>
+    <p class="text-muted text-center">No creeds recorded yet.</p>
+    <p class="text-center"><a asp-action="Create" class="btn btn-primary">＋ Add the first creed</a></p>
 }
-
