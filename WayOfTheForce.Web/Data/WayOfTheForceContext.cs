@@ -24,7 +24,20 @@ public class WayOfTheForceContext : DbContext
             new Creeds { Id = 5, CreedName = "Mandalorian Clans", Creed = "Honor, loyalty, and strength through the warrior creed",           Homeworld = "Mandalore", Affinity = -55, TotalHolocrons = 0, IsFriendly = false },
             new Creeds { Id = 6, CreedName = "Wookiee Clans",     Creed = "Loyalty, courage, and defense of Kashyyyk",                        Homeworld = "Kashyyyk", Affinity = 30,  TotalHolocrons = 0, IsFriendly = true  },
             new Creeds { Id = 7, CreedName = "Imperial Knights",  Creed = "The Force is a powerful tool, but always loyalty to the Emperor.", Homeworld = "Bastion", Affinity = -25, TotalHolocrons = 0, IsFriendly = false },
-            new Creeds { Id = 8, CreedName = "Jeaii Order",       Creed = "There is no light without dark. Through passion, we gain strength.", Homeworld = "Tython", Affinity = 5, TotalHolocrons = 0, IsFriendly = true  }
+            new Creeds { Id = 8, CreedName = "Je'daii Order",     Creed = "There is no light without dark. Through passion, we gain strength.", Homeworld = "Tython", Affinity = 5, TotalHolocrons = 0, IsFriendly = true  }
+        );
+
+        // Holocrons from Wookieepedia, matched to the creed that made or held each one.
+        // Where the source gives no creation year, the earliest year it does give is used.
+        modelBuilder.Entity<Holocrons>().HasData(
+            new Holocrons { Id = 1, CreedId = 1, Title = "Tedryn Holocron",           Author = "Tedryn",          WhenRecorded = 4000,  Era = GalacticEra.BBY, FoundLocation = "Dantooine" },
+            new Holocrons { Id = 2, CreedId = 1, Title = "Eno Cordova's Holocron",    Author = "Jocasta Nu",      WhenRecorded = 14,    Era = GalacticEra.BBY, FoundLocation = "Bogano Vault, Bogano" },
+            new Holocrons { Id = 3, CreedId = 2, Title = "Holocron of King Adas",     Author = "King Adas",       WhenRecorded = 27700, Era = GalacticEra.BBY, FoundLocation = "Korriban" },
+            new Holocrons { Id = 4, CreedId = 2, Title = "Sith Holocron of Malachor", Author = "Unknown Sith",    WhenRecorded = 2,     Era = GalacticEra.BBY, FoundLocation = "Malachor Sith Temple" },
+            new Holocrons { Id = 5, CreedId = 3, Title = "Kanan Jarrus's Holocron",   Author = "Depa Billaba",    WhenRecorded = 19,    Era = GalacticEra.BBY, FoundLocation = "The Ghost" },
+            new Holocrons { Id = 6, CreedId = 4, Title = "Codex of Tython",           Author = "Unknown Jedi",    WhenRecorded = 1,     Era = GalacticEra.ABY, FoundLocation = "Dantooine" },
+            new Holocrons { Id = 7, CreedId = 7, Title = "Eshkar Niin's Holocron",    Author = "Eshkar Niin",     WhenRecorded = 137,   Era = GalacticEra.ABY, FoundLocation = null },
+            new Holocrons { Id = 8, CreedId = 8, Title = "Rajivari's Holocron",       Author = "Master Rajivari", WhenRecorded = 25783, Era = GalacticEra.BBY, FoundLocation = "Tython" }
         );
     }
 }

@@ -132,7 +132,7 @@ namespace WayOfTheForce.Web.Migrations
                             Id = 8,
                             Affinity = 5,
                             Creed = "There is no light without dark. Through passion, we gain strength.",
-                            CreedName = "Jeaii Order",
+                            CreedName = "Je'daii Order",
                             Homeworld = "Tython",
                             IsFriendly = true,
                             TotalHolocrons = 0
@@ -175,6 +175,87 @@ namespace WayOfTheForce.Web.Migrations
                     b.HasIndex("CreedId");
 
                     b.ToTable("Holocrons");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Author = "Tedryn",
+                            CreedId = 1,
+                            Era = 0,
+                            FoundLocation = "Dantooine",
+                            Title = "Tedryn Holocron",
+                            WhenRecorded = 4000
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Author = "Jocasta Nu",
+                            CreedId = 1,
+                            Era = 0,
+                            FoundLocation = "Bogano Vault, Bogano",
+                            Title = "Eno Cordova's Holocron",
+                            WhenRecorded = 14
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Author = "King Adas",
+                            CreedId = 2,
+                            Era = 0,
+                            FoundLocation = "Korriban",
+                            Title = "Holocron of King Adas",
+                            WhenRecorded = 27700
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Author = "Unknown Sith",
+                            CreedId = 2,
+                            Era = 0,
+                            FoundLocation = "Malachor Sith Temple",
+                            Title = "Sith Holocron of Malachor",
+                            WhenRecorded = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Author = "Depa Billaba",
+                            CreedId = 3,
+                            Era = 0,
+                            FoundLocation = "The Ghost",
+                            Title = "Kanan Jarrus's Holocron",
+                            WhenRecorded = 19
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Author = "Unknown Jedi",
+                            CreedId = 4,
+                            Era = 1,
+                            FoundLocation = "Dantooine",
+                            Title = "Codex of Tython",
+                            WhenRecorded = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Author = "Eshkar Niin",
+                            CreedId = 7,
+                            Era = 1,
+                            Title = "Eshkar Niin's Holocron",
+                            WhenRecorded = 137
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Author = "Master Rajivari",
+                            CreedId = 8,
+                            Era = 0,
+                            FoundLocation = "Tython",
+                            Title = "Rajivari's Holocron",
+                            WhenRecorded = 25783
+                        });
                 });
 
             modelBuilder.Entity("WayOfTheForce.Web.Models.Holocrons", b =>
