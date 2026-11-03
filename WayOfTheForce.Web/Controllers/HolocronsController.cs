@@ -44,6 +44,8 @@ public class HolocronsController : Controller
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(HolocronFormViewModel form)
     {
+        RequireExistingCreed(form);
+
         if (!ModelState.IsValid)
         {
             form.Creeds = CreedChoices(form.Holocron.CreedId);   // rebuild it
@@ -56,7 +58,107 @@ public class HolocronsController : Controller
         return RedirectToAction("Details", "Creeds", new { id = form.Holocron.CreedId });
     }
 
-    // One place that knows how to build the list, because two actions need it.
+    // GET /Holocrons/Edit/5 — the same form as Create, already filled in.
+    public async Task<IActionResult> Edit(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var holocron = await _context.Holocrons.FindAsync(id);
+        if (holocron == null)
+        {
+            return NotFound();
+        }
+
+        var form = new HolocronFormViewModel
+        {
+            Holocron = holocron,
+            Creeds = CreedChoices(holocron.CreedId)
+        };
+
+        return View(form);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, HolocronFormViewModel form)
+    {
+        if (id != form.Holocron.Id)
+        {
+            return NotFound();
+        }
+
+        RequireExistingCreed(form);
+
+        if (!ModelState.IsValid)
+        {
+            form.Creeds = CreedChoices(form.Holocron.CreedId);   // rebuild it
+            return View(form);
+        }
+
+        try
+        {
+            _context.Update(form.Holocron);
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            // Someone removed it while this form was open.
+            if (!_context.Holocrons.Any(h => h.Id == id))
+            {
+                return NotFound();
+            }
+            throw;
+        }
+
+        return RedirectToAction("Details", "Creeds", new { id = form.Holocron.CreedId });
+    }
+
+    // GET /Holocrons/Delete/5 — asks first, and Include shows which creed loses it.
+    public async Task<IActionResult> Delete(int? id)
+    {
+        if (id == null)
+        {
+            return NotFound();
+        }
+
+        var holocron = await _context.Holocrons
+            .Include(h => h.Creed)
+            .FirstOrDefaultAsync(h => h.Id == id);
+        if (holocron == null)
+        {
+            return NotFound();
+        }
+
+        return View(holocron);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        var holocron = await _context.Holocrons.FindAsync(id);
+        if (holocron != null)
+        {
+            _context.Holocrons.Remove(holocron);
+            await _context.SaveChangesAsync();
+        }
+
+        return RedirectToAction(nameof(Index));
+    }
+
+    // The creed could have been removed after the form loaded; saving would break the foreign key.
+    private void RequireExistingCreed(HolocronFormViewModel form)
+    {
+        if (!_context.Creeds.Any(c => c.Id == form.Holocron.CreedId))
+        {
+            ModelState.AddModelError("Holocron.CreedId", "Pick a creed that still exists.");
+        }
+    }
+
+    // One place that knows how to build the list, because every form action needs it.
     private SelectList CreedChoices(int? selected) =>
         new SelectList(_context.Creeds.OrderBy(c => c.CreedName).ToList(), "Id", "CreedName", selected);
 }

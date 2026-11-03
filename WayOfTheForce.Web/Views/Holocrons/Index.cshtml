@@ -6,7 +6,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Holocron Archive 🔷</h1>
-    <p>@Model.Count holocrons recovered across the galaxy.</p>
+    <p>@Model.Count holocron@(Model.Count == 1 ? "" : "s") recovered across the galaxy.</p>
 </div>
 
 <p>
@@ -18,19 +18,27 @@
     <ul class="list-group mb-4">
         @foreach (var holocron in Model)
         {
-            <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex flex-wrap justify-content-between gap-2">
                 <span>
                     @holocron.Title
                     <span class="text-muted">· @holocron.Author · Found on @(holocron.FoundLocation ?? "unknown")</span>
                     <br />
                     <a asp-controller="Creeds" asp-action="Details" asp-route-id="@holocron.CreedId" class="small">@holocron.Creed?.CreedName</a>
                 </span>
-                <span>Year @holocron.WhenRecorded @holocron.Era</span>
+                <span>
+                    Year @holocron.WhenRecorded @holocron.Era
+                    <a asp-action="Edit" asp-route-id="@holocron.Id" class="small ms-2">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@holocron.Id" class="small ms-2">Remove</a>
+                </span>
             </li>
         }
     </ul>
 }
 else
 {
-    <p class="text-muted">No holocrons recovered.</p>
+    <p class="text-muted">
+        No holocrons recovered yet.
+        <a asp-action="Create">Archive the first one</a> or
+        <a asp-controller="Creeds" asp-action="Index">browse the Creeds</a>.
+    </p>
 }

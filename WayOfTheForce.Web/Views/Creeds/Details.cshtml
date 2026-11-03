@@ -1,7 +1,7 @@
 @model CreedDetailsViewModel
 
 @{
-    ViewData["Title"] = "Alliance Details Page";
+    ViewData["Title"] = Model.Creed.CreedName;
 }
 
 <h1>Creed Details</h1>
@@ -21,19 +21,26 @@
     <ul class="list-group mb-4">
         @foreach (var holocron in Model.Creed.Holocrons)
         {
-            <li class="list-group-item d-flex justify-content-between">
+            <li class="list-group-item d-flex flex-wrap justify-content-between gap-2">
                 <span>
                     @holocron.Title
                     <span class="text-muted">· @holocron.Author · Found on @(holocron.FoundLocation ?? "unknown")</span>
                 </span>
-                <span>Year @holocron.WhenRecorded @holocron.Era</span>
+                <span>
+                    Year @holocron.WhenRecorded @holocron.Era
+                    <a asp-controller="Holocrons" asp-action="Edit" asp-route-id="@holocron.Id" class="small ms-2">Edit</a>
+                    <a asp-controller="Holocrons" asp-action="Delete" asp-route-id="@holocron.Id" class="small ms-2">Remove</a>
+                </span>
             </li>
         }
     </ul>
 }
 else
 {
-    <p class="text-muted">No holocrons recovered.</p>
+    <p class="text-muted">
+        No holocrons recovered.
+        <a asp-controller="Holocrons" asp-action="Create" asp-route-creedId="@Model.Creed.Id">Archive the first one</a>.
+    </p>
 }
 
 <h2 class="h5 mt-4">Also on @(Model.Creed.Homeworld ?? "this world")</h2>
@@ -52,10 +59,13 @@ else
 }
 else
 {
-    <p class="text-muted">No other alliances share this homeworld.</p>
+    <p class="text-muted">
+        No other creeds share this homeworld.
+        <a asp-action="Index">See all creeds</a>.
+    </p>
 }
 
 <p class="mt-4"><a asp-action="Edit" asp-route-id="@Model.Creed.Id" class="btn btn-secondary">✏️ Edit this Creed</a></p>
 <p><a asp-action="Delete" asp-route-id="@Model.Creed.Id" class="btn btn-outline-danger">🗑️ Remove this Creed</a></p>
 
-<a asp-action="Index">Back to all alliances</a>
+<a asp-action="Index">Back to all creeds</a>

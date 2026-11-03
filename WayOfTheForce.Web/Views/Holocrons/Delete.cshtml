@@ -1,0 +1,25 @@
+@model Holocrons
+@{
+    ViewData["Title"] = $"Remove: {Model.Title}";
+}
+
+<h1>Remove this holocron? 🗑️</h1>
+<p class="text-muted">This takes it out of the archive for good. There is no undo.</p>
+
+<div class="card mb-4 col-md-6">
+    <div class="card-body">
+        <h2 class="card-title h5">@Model.Title</h2>
+        <ul class="list-unstyled mb-0">
+            <li>Creed: @Model.Creed?.CreedName</li>
+            <li>Author: @Model.Author</li>
+            <li>Recorded: Year @Model.WhenRecorded @Model.Era</li>
+            <li>Found on: @(Model.FoundLocation ?? "unknown")</li>
+        </ul>
+    </div>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Remove it</button>
+    <a asp-action="Index" class="btn btn-link">Keep it</a>
+</form>

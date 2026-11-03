@@ -16,7 +16,7 @@
         <span asp-validation-for="Holocron.CreedId" class="text-danger"></span>
         @if (Model.Creeds == null || !Model.Creeds.Any())
         {
-            <div class="form-text">No creeds to choose from yet. <a asp-controller="Creeds" asp-action="Create">Add an alliance</a> first.</div>
+            <div class="form-text">No creeds to choose from yet. <a asp-controller="Creeds" asp-action="Create">Add a creed</a> first.</div>
         }
     </div>
 
@@ -51,7 +51,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Archive it</button>
-    <a asp-controller="Creeds" asp-action="Index" class="btn btn-link">Cancel</a>
+    <a asp-action="Index" class="btn btn-link">Cancel</a>
 </form>
 
 @section Scripts {
