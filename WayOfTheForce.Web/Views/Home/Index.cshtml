@@ -1,22 +1,26 @@
 ﻿@{
-    ViewData["Title"] = "Choose Path Page";
+    ViewData["Title"] = "Star Wars Creeds & Holocrons";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Choose Your Path</h1>
-    <p>Picture yourself on a journey through the mystical world of the Force.</p>
+<div class="text-center py-4">
+    <h1 class="display-4">Way of the Force</h1>
+    <p class="lead">
+        A guide to the orders and factions of the Star Wars galaxy: what each one
+        believes, where it calls home, and which holocrons it guards.
+    </p>
+    <p>Built for Star Wars fans who want the lore in one place. Browse it, or add to the archive yourself.</p>
 
-    <h4 class="mt-4">Choose your side</h4>
+    <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
+        <a class="btn btn-primary btn-lg" asp-controller="Creeds" asp-action="Index">Explore the Creeds</a>
+        <a class="btn btn-warning btn-lg" asp-controller="Holocrons" asp-action="Index">View the Holocrons</a>
+    </div>
+
+    <h2 class="h4 mt-5">Choose your side</h2>
+    <p class="text-muted">Changes the look of the whole site, and stays that way on your next visit.</p>
     <div class="btn-group" role="group" aria-label="Choose your side">
         <button type="button" class="btn btn-info" onclick="setSide('light')">Light Side</button>
         <button type="button" class="btn btn-secondary" onclick="setSide('grey')">Grey Side</button>
         <button type="button" class="btn btn-danger" onclick="setSide('dark')">Dark Side</button>
-    </div>
-
-    <h4 class="mt-5">Where will you go?</h4>
-    <div class="d-flex justify-content-center gap-3">
-        <a class="btn btn-outline-primary btn-lg" asp-controller="Creeds" asp-action="Index">Explore the Creeds</a>
-        <a class="btn btn-outline-warning btn-lg" asp-controller="Holocrons" asp-action="Index">View the Holocrons</a>
     </div>
 </div>
 @section Scripts {

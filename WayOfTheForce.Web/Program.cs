@@ -16,6 +16,10 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+
+// An empty 404 becomes the Missing page, keeping the 404 status code.
+app.UseStatusCodePagesWithReExecute("/Home/Missing");
+
 app.UseRouting();
 
 app.UseAuthorization();
