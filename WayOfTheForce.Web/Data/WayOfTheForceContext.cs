@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using WayOfTheForce.Web.Models;
 
 namespace WayOfTheForce.Web.Data;
 
-public class WayOfTheForceContext : DbContext
+public class WayOfTheForceContext : IdentityDbContext<ArchiveMember>
 {
     public WayOfTheForceContext(DbContextOptions<WayOfTheForceContext> options) : base(options)
     {
@@ -16,6 +17,10 @@ public class WayOfTheForceContext : DbContext
     // Same ids as before, so existing /Creeds/Details/{id} links still work.
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Identity's seven tables are configured here. Leave it out and the
+        // app can't start: "requires a primary key to be defined".
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Creeds>().HasData(
             new Creeds { Id = 1, CreedName = "Jedi Order",        Creed = "Peacekeepers who serve the light side of the Force",               Homeworld = "Coruscant", Affinity = 95,  TotalHolocrons = 0, IsFriendly = true  },
             new Creeds { Id = 2, CreedName = "Sith Order",        Creed = "Power through passion and mastery of the dark side",               Homeworld = "Moraband", Affinity = -95, TotalHolocrons = 0, IsFriendly = false },

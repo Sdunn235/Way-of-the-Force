@@ -1,4 +1,6 @@
 using WayOfTheForce.Web.Data;
+using WayOfTheForce.Web.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,11 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<WayOfTheForceContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Identity: who the members are, and the sign-in cookie that remembers them.
+// The members live in WayOfTheForceContext, in the same database as the creeds.
+builder.Services.AddIdentity<ArchiveMember, IdentityRole>()
+    .AddEntityFrameworkStores<WayOfTheForceContext>();
 
 var app = builder.Build();
 
@@ -22,6 +29,9 @@ app.UseStatusCodePagesWithReExecute("/Home/Missing");
 
 app.UseRouting();
 
+// Reads the sign-in cookie on every request. Must come before UseAuthorization,
+// so the lock knows who you are before it decides.
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
