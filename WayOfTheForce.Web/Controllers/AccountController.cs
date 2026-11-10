@@ -52,4 +52,48 @@ public class AccountController : Controller
         await _signInManager.SignInAsync(member, isPersistent: false);
         return RedirectToAction("Index", "Home");
     }
+
+    // GET /Account/Login, which is also where [Authorize] sends a visitor, with the
+    // page they were trying to reach in ?ReturnUrl=
+    public IActionResult Login(string? returnUrl = null)
+    {
+        ViewData["ReturnUrl"] = returnUrl;
+        return View();
+    }
+
+    // POST /Account/Login
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Login(LoginViewModel form, string? returnUrl = null)
+    {
+        ViewData["ReturnUrl"] = returnUrl;
+        if (!ModelState.IsValid)
+        {
+            return View(form);
+        }
+
+        var result = await _signInManager.PasswordSignInAsync(
+            form.Email, form.Password, form.RememberMe, lockoutOnFailure: false);
+
+        if (!result.Succeeded)
+        {
+            // One message for both mistakes. Saying "wrong password" would tell
+            // a stranger that the email has an account.
+            ModelState.AddModelError("", "That email and password don't match a member.");
+            return View(form);
+        }
+
+        // LocalRedirect refuses a ReturnUrl that points at another site.
+        return LocalRedirect(returnUrl ?? "/");
+    }
+
+    // POST /Account/Logout. A POST, never a link: any page on the internet
+    // can make a browser send a GET.
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+        return RedirectToAction("Index", "Home");
+    }
 }
