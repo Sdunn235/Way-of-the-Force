@@ -174,6 +174,11 @@ namespace WayOfTheForce.Web.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("HoloNetHandle")
+                        .IsRequired()
+                        .HasMaxLength(40)
+                        .HasColumnType("nvarchar(40)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 

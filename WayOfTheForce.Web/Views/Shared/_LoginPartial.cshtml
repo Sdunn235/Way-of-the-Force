@@ -1,8 +1,15 @@
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ArchiveMember> UserManager
+
 <ul class="navbar-nav align-items-sm-center">
 @if (User.Identity?.IsAuthenticated == true)
 {
+    // The cookie says WHO is signed in. Anything else about them, like the
+    // HoloNet handle, is a column, so the partial looks the member up.
+    var member = await UserManager.GetUserAsync(User);
+    var name = string.IsNullOrEmpty(member?.HoloNetHandle) ? User.Identity.Name : member.HoloNetHandle;
     <li class="nav-item">
-        <span class="navbar-text me-2">Signed in as @User.Identity.Name</span>
+        <span class="navbar-text me-2">Signed in as @name</span>
     </li>
     <li class="nav-item">
         <form asp-controller="Account" asp-action="Logout" method="post">

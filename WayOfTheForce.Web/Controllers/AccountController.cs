@@ -34,7 +34,7 @@ public class AccountController : Controller
             return View(form);
         }
 
-        var member = new ArchiveMember { UserName = form.Email, Email = form.Email };
+        var member = new ArchiveMember { UserName = form.Email, Email = form.Email, HoloNetHandle = form.HoloNetHandle };
 
         // The password goes in; a hash is what gets saved.
         var result = await _userManager.CreateAsync(member, form.Password);

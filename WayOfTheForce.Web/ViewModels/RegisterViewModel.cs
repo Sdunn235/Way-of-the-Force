@@ -11,6 +11,11 @@ public class RegisterViewModel
     public string Email { get; set; } = "";
 
     [Required]
+    [Display(Name = "HoloNet handle")]
+    [StringLength(40, MinimumLength = 2)]
+    public string HoloNetHandle { get; set; } = "";
+
+    [Required]
     [DataType(DataType.Password)]
     public string Password { get; set; } = "";
 
