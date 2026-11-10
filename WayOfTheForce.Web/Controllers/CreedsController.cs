@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WayOfTheForce.Web.Data;
 using WayOfTheForce.Web.Models;
@@ -7,6 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WayOfTheForce.Web.Controllers;
 
+// Changing a creed needs a signed-in member: every action, POSTs included,
+// and any added later. The two that only read open themselves up.
+[Authorize]
 public class CreedsController : Controller
 {
     private readonly WayOfTheForceContext _context;
@@ -14,6 +18,7 @@ public class CreedsController : Controller
     {
         _context = context;
     }
+    [AllowAnonymous]
     public IActionResult Index()
     {
         // Include loads the Holocrons in one query so each card can show its count.
@@ -21,6 +26,7 @@ public class CreedsController : Controller
             .Include(c => c.Holocrons)
             .ToList());
     }
+    [AllowAnonymous]
     public IActionResult Details(int id)
     {
         // Include pulls in the related Holocrons; without it the list is always empty.

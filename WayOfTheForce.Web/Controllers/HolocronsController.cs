@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using WayOfTheForce.Web.Data;
@@ -7,6 +8,9 @@ using WayOfTheForce.Web.ViewModels;
 
 namespace WayOfTheForce.Web.Controllers;
 
+// The holocron archive is curated: adding, editing and removing need a
+// signed-in member. Only the list stays open to everyone.
+[Authorize]
 public class HolocronsController : Controller
 {
     private readonly WayOfTheForceContext _context;
@@ -17,6 +21,7 @@ public class HolocronsController : Controller
     }
 
     // GET /Holocrons — every holocron in the archive, with the creed it belongs to.
+    [AllowAnonymous]
     public async Task<IActionResult> Index()
     {
         var holocrons = await _context.Holocrons
